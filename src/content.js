@@ -1,0 +1,1 @@
+console.log('Markdown Helper loaded on GitHub!');
