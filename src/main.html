@@ -7,12 +7,23 @@
   </head>
   <body>
     <h1>Markdown Templates</h1>
-    <div>
+    <!-- タブメニュー -->
+    <ul class="tab-menu">
+      <li class="active" data-tab="tab1">Create</li>
+      <li data-tab="tab2">List</li>
+    </ul>
+
+    <!-- タブコンテンツ1: 作成フォーム -->
+    <div id="tab1" class="tab-content active">
       <input type="text" id="title" placeholder="Title" /><br />
       <textarea id="content" placeholder="Content"></textarea><br />
       <button id="addButton">Save</button>
     </div>
-    <div id="listContainer"></div>
+
+    <!-- タブコンテンツ2: リスト表示領域 -->
+    <div id="tab2" class="tab-content">
+      <div id="listContainer"></div>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

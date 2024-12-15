@@ -14,3 +14,31 @@ textarea {
 button {
   margin-right: 5px;
 }
+
+/* タブメニューの基本スタイル */
+.tab-menu {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+}
+.tab-menu li {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  margin-right: 5px;
+}
+.tab-menu li.active {
+  background: #eee;
+  font-weight: bold;
+}
+
+/* タブコンテンツ */
+.tab-content {
+  display: none;
+  padding: 10px;
+}
+.tab-content.active {
+  display: block;
+}

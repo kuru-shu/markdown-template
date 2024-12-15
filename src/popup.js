@@ -107,7 +107,7 @@ function applyMemo(index) {
         const url = tabs[0].url;
         const prPagePattern = /^https:\/\/github\.com\/[^/]+\/[^/]+\/pull\/\d+/;
         if (!prPagePattern.test(url)) {
-          alert('This extension works only on GitHub PR pages.');
+          alert('挿入箇所が見つかりません');
           return;
         }
         chrome.tabs.sendMessage(
@@ -125,3 +125,29 @@ function applyMemo(index) {
     });
   });
 }
+
+// タブ切り替え用のスクリプト
+document.addEventListener('DOMContentLoaded', () => {
+  const tabMenuItems = document.querySelectorAll('.tab-menu li');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabMenuItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const targetTab = item.getAttribute('data-tab');
+
+      // 全てのタブメニューからactiveを外す
+      tabMenuItems.forEach((i) => i.classList.remove('active'));
+
+      // クリックしたタブメニューにactiveを付与
+      item.classList.add('active');
+
+      // 全てのタブコンテンツを非表示
+      tabContents.forEach((content) =>
+        content.classList.remove('active')
+      );
+
+      // 対象タブのみ表示
+      document.getElementById(targetTab).classList.add('active');
+    });
+  });
+});
