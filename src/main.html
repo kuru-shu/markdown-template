@@ -2,20 +2,19 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Markdown Helper</title>
+    <title>My Sidepanel extension</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1>Markdown Templates</h1>
-    <textarea
-      id="markdown-template"
-      placeholder="Edit your Markdown here..."
-    ></textarea>
-    <button id="save-template">Save</button>
+    <div>
+      <input type="text" id="title" placeholder="Title" /><br />
+      <textarea id="content" placeholder="Content"></textarea><br />
+      <button id="addButton">Save</button>
+    </div>
     <button id="insert-template">Insert</button>
     <button id="show-template">Show</button>
-    <span>保存済み</span>
-    <textarea id="saved-text"></textarea>
+    <div id="listContainer"></div>
     <script src="popup.js"></script>
   </body>
 </html>
