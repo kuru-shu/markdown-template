@@ -13,8 +13,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://github.com/*"],
-      "js": ["hot-reload.js", "content.js"]
+      "matches": ["https://github.com/*/*/pull/*"],
+      "js": ["hot-reload.js", "content.js"],
+      "run_at": "document_idle"
     }
   ]
 }

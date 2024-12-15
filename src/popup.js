@@ -1,30 +1,3 @@
-document.getElementById('insert-template').addEventListener('click', () => {
-  chrome.storage.local.get('markdownTemplate', ({ markdownTemplate }) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.scripting.executeScript({
-        target: { tabId: tabs[0].id },
-        function: insertMarkdown,
-        args: [markdownTemplate],
-      });
-    });
-  });
-});
-
-function insertMarkdown(template) {
-  const textarea = document.querySelector('[name="pull_request[body]"]');
-  if (textarea) {
-    textarea.value = template;
-  } else {
-    alert('No textarea found on this page!');
-  }
-}
-
-document.getElementById('show-template').addEventListener('click', () => {
-  chrome.storage.local.get('markdownTemplate', ({ markdownTemplate }) => {
-    document.getElementById('saved-text').value = markdownTemplate;
-  });
-});
-
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -63,10 +36,15 @@ function renderMemos(memos) {
     deleteButton.textContent = 'Delete';
     deleteButton.addEventListener('click', () => deleteMemo(index));
 
+    const insertButton = document.createElement('button');
+    insertButton.textContent = 'Insert';
+    insertButton.addEventListener('click', () => applyMemo(index));
+
     div.appendChild(title);
     div.appendChild(content);
     div.appendChild(editButton);
     div.appendChild(deleteButton);
+    div.appendChild(insertButton);
 
     container.appendChild(div);
   });
@@ -86,9 +64,9 @@ function addMemo() {
 
   chrome.storage.local.get(['memos'], (result) => {
     const memos = result.memos || [];
-    memos.push({title, content});
+    memos.push({ title, content });
 
-    chrome.storage.local.set({memos}, () => {
+    chrome.storage.local.set({ memos }, () => {
       titleInput.value = '';
       contentInput.value = '';
       loadMemos();
@@ -100,7 +78,7 @@ function deleteMemo(index) {
   chrome.storage.local.get(['memos'], (result) => {
     const memos = result.memos || [];
     memos.splice(index, 1);
-    chrome.storage.local.set({memos}, loadMemos);
+    chrome.storage.local.set({ memos }, loadMemos);
   });
 }
 
@@ -115,6 +93,28 @@ function editMemo(index, memo) {
     const memos = result.memos || [];
     memos[index].title = newTitle;
     memos[index].content = newContent;
-    chrome.storage.local.set({memos}, loadMemos);
+    chrome.storage.local.set({ memos }, loadMemos);
+  });
+}
+
+function applyMemo(index) {
+  chrome.storage.local.get(['memos'], (result) => {
+    const memos = result.memos || [];
+    const memo = memos[index];
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      if (tabs[0]) {
+        chrome.tabs.sendMessage(
+          tabs[0].id,
+          { action: 'insertMemo', memo: memo.content },
+          (response) => {
+            if (response && response.result === 'success') {
+              console.log('Inserted successfully');
+            } else {
+              alert('Failed to insert');
+            }
+          }
+        );
+      }
+    });
   });
 }
