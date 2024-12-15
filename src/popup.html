@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
-  <title>Markdown Helper</title>
+    <title>Markdown Helper</title>
     <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <h1>Markdown Templates</h1>
-  <textarea id="markdown-template" placeholder="Edit your Markdown here..."></textarea>
-  <button id="save-template">Save</button>
-  <button id="insert-template">Insert</button>
-  <script src="popup.js"></script>
-</body>
+  </head>
+  <body>
+    <h1>Markdown Templates</h1>
+    <textarea
+      id="markdown-template"
+      placeholder="Edit your Markdown here..."
+    ></textarea>
+    <button id="save-template">Save</button>
+    <button id="insert-template">Insert</button>
+    <button id="show-template">Show</button>
+    <span>保存済み</span>
+    <textarea id="saved-text"></textarea>
+    <script src="popup.js"></script>
+  </body>
 </html>
