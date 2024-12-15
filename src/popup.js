@@ -103,6 +103,13 @@ function applyMemo(index) {
     const memo = memos[index];
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
+        // 例: GitHub PRページ判定
+        const url = tabs[0].url;
+        const prPagePattern = /^https:\/\/github\.com\/[^/]+\/[^/]+\/pull\/\d+/;
+        if (!prPagePattern.test(url)) {
+          alert('This extension works only on GitHub PR pages.');
+          return;
+        }
         chrome.tabs.sendMessage(
           tabs[0].id,
           { action: 'insertMemo', memo: memo.content },
