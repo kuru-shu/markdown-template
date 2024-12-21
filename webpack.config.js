@@ -4,33 +4,52 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: {
-    background: './src/background.js',
-    content: './src/content.js',
-    popup: './src/popup.js',
+    background: './background.js',
+    content: './content.js',
+    main: './src/main.jsx', // Reactエントリーポイントに変更
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     environment: {
-    arrowFunction: false, // 古いブラウザ対応が必要な場合
-    const: false,         // const を使用しない
-    dynamicImport: false, // 動的 import を禁止
+      arrowFunction: false,
+      const: false,
+      dynamicImport: false,
+    },
   },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/, // JSX対応
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react', // React対応
+            ],
+          },
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'], // importで拡張子省略時に.js, .jsxを解決
   },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/manifest.json', to: '.' },
-        { from: 'src/popup.html', to: '.' },
-        { from: 'src/styles.css', to: '.' },
-        { from: 'src/hot-reload.js', to: '.' }, // Hot Reload スクリプトをコピー
+        { from: 'manifest.json', to: '.' },
+        { from: 'main.html', to: '.' }, // popup.html相当
+        { from: 'hot-reload.js', to: '.' },
       ],
     }),
     new LiveReloadPlugin({
       port: 35730,
-    }), // Livereload を有効化
+    }),
   ],
   mode: 'development',
-  watch: true, // ファイルの変更を監視
+  watch: true,
   devtool: 'cheap-module-source-map',
 };

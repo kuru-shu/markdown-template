@@ -8,10 +8,19 @@
     "serve": "webpack --watch"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "babel-loader": "^9.2.1",
     "copy-webpack-plugin": "^11.0.0",
     "livereload": "^0.9.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0",
     "webpack-livereload-plugin": "^3.0.2"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
