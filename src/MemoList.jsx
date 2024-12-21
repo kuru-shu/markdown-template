@@ -12,12 +12,19 @@ function MemoList({ memos, onDelete, onEdit, onApply }) {
   return (
     <div>
       {memos.map((memo, index) => (
-        <div key={index} style={{border: '1px solid #ccc', padding: '5px', marginBottom: '5px'}}>
+        <div
+          key={index}
+          style={{
+            border: '1px solid #ccc',
+            padding: '5px',
+            marginBottom: '5px',
+          }}
+        >
           <h2>{memo.title}</h2>
           <p>{memo.content}</p>
           <button onClick={() => handleEdit(index, memo)}>Edit</button>
           <button onClick={() => onDelete(index)}>Delete</button>
-          <button onClick={() => onApply(index)}>Insert</button>
+          <button onClick={() => onApply(memo)}>Insert</button>
         </div>
       ))}
     </div>

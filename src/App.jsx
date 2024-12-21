@@ -40,8 +40,7 @@ function App() {
     });
   }
 
-  function applyMemo(index) {
-    const memo = memos[index];
+  function applyMemo(memo) {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
         const url = tabs[0].url;
@@ -80,7 +79,9 @@ function App() {
         activeTab={activeTab}
         onTabChange={setActiveTab}
       />
-      {activeTab === 'create' && <MemoForm onAdd={addMemo} />}
+      {activeTab === 'create' && (
+        <MemoForm onAdd={addMemo} onApply={applyMemo} />
+      )}
       {activeTab === 'list' && (
         <MemoList
           memos={memos}
