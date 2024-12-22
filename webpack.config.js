@@ -11,11 +11,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    environment: {
-      arrowFunction: false,
-      const: false,
-      dynamicImport: false,
-    },
   },
   module: {
     rules: [
@@ -31,6 +26,20 @@ module.exports = {
             ],
           },
         },
+      },
+      {
+        // Tailwind (CSS) 用
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              // 必要に応じてモジュール化など
+            },
+          },
+          'postcss-loader', // Tailwind / autoprefixer を効かせる
+        ],
       },
     ],
   },

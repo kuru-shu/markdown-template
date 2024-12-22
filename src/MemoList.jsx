@@ -14,17 +14,45 @@ function MemoList({ memos, onDelete, onEdit, onApply }) {
       {memos.map((memo, index) => (
         <div
           key={index}
-          style={{
-            border: '1px solid #ccc',
-            padding: '5px',
-            marginBottom: '5px',
-          }}
+          // border: 1px, padding: 0.5rem, margin-bottom: 0.5rem
+          className="border border-gray-300 p-2 mb-2"
         >
-          <h2>{memo.title}</h2>
-          <p>{memo.content}</p>
-          <button onClick={() => handleEdit(index, memo)}>Edit</button>
-          <button onClick={() => onDelete(index)}>Delete</button>
-          <button onClick={() => onApply(memo)}>Insert</button>
+          <h2 className="text-lg font-bold mb-1">{memo.title}</h2>
+          <p className="mb-2">{memo.content}</p>
+          {/* ボタン群 */}
+          <button
+            onClick={() => handleEdit(index, memo)}
+            className="
+              border border-gray-300 bg-gray-100
+              px-3 py-1 rounded mr-2
+              cursor-pointer transition-colors
+              hover:bg-gray-200
+            "
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => onDelete(index)}
+            className="
+              border border-gray-300 bg-gray-100
+              px-3 py-1 rounded mr-2
+              cursor-pointer transition-colors
+              hover:bg-gray-200
+            "
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => onApply(memo)}
+            className="
+              border border-gray-300 bg-gray-100
+              px-3 py-1 rounded
+              cursor-pointer transition-colors
+              hover:bg-gray-200
+            "
+          >
+            Insert
+          </button>
         </div>
       ))}
     </div>

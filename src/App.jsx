@@ -80,7 +80,7 @@ function App() {
         onTabChange={setActiveTab}
       />
       {activeTab === 'create' && (
-        <MemoForm onAdd={addMemo} onApply={applyMemo} />
+        <MemoForm onAdd={addMemo} onApply={applyMemo}/>
       )}
       {activeTab === 'list' && (
         <MemoList

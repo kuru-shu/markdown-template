@@ -17,5 +17,11 @@
       "js": ["hot-reload.js", "content.js"],
       "run_at": "document_idle"
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["dist/*.html", "dist/*.js"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
