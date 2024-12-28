@@ -25,9 +25,14 @@
     "webpack-livereload-plugin": "^3.0.2"
   },
   "dependencies": {
+    "dompurify": "^3.2.3",
+    "easymde": "^2.18.0",
+    "highlight.js": "^11.11.1",
+    "marked": "^15.0.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^9.0.1",
+    "react-simplemde-editor": "^5.2.0",
     "remark-gfm": "^4.0.0"
   }
 }

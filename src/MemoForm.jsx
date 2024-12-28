@@ -1,5 +1,7 @@
+import 'easymde/dist/easymde.min.css';
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import SimpleMde from 'react-simplemde-editor';
 import remarkGfm from 'remark-gfm';
 
 // TailwindのCSS ( @tailwind base; @tailwind components; @tailwind utilities; ) を読み込み
@@ -76,24 +78,7 @@ function MemoForm({ onAdd, onApply }) {
       {/* コンテンツ入力 */}
       <div className="mb-4">
         <label className="block mb-2 font-bold">Content</label>
-        <textarea
-          placeholder="Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="
-            w-full
-            box-border
-            p-2
-            text-base
-            border
-            border-gray-300
-            rounded
-            focus:outline-none
-            focus:border-blue-400
-            focus:ring-2
-            focus:ring-blue-200
-          "
-        />
+        <SimpleMde value={content} onChange={(value) => setContent(value)} />
       </div>
 
       {/* ボタン群 */}
