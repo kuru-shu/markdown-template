@@ -28,34 +28,19 @@ function MemoList({ memos, onDelete, onEdit, onApply }) {
           {/* ボタン群 */}
           <button
             onClick={() => handleEdit(index, memo)}
-            className="
-              border border-gray-300 bg-gray-100
-              px-3 py-1 rounded mr-2
-              cursor-pointer transition-colors
-              hover:bg-gray-200
-            "
+            className="border border-gray-300 bg-gray-100 px-3 py-1 rounded mr-2 cursor-pointer transition-colors hover:bg-gray-200"
           >
             Edit
           </button>
           <button
             onClick={() => onDelete(index)}
-            className="
-              border border-gray-300 bg-gray-100
-              px-3 py-1 rounded mr-2
-              cursor-pointer transition-colors
-              hover:bg-gray-200
-            "
+            className="border border-gray-300 bg-gray-100 px-3 py-1 rounded mr-2 cursor-pointer transition-colors hover:bg-gray-200"
           >
             Delete
           </button>
           <button
             onClick={() => onApply(memo)}
-            className="
-              border border-gray-300 bg-gray-100
-              px-3 py-1 rounded
-              cursor-pointer transition-colors
-              hover:bg-gray-200
-            "
+            className="border border-gray-300 bg-gray-100 px-3 py-1 rounded cursor-pointer transition-colors hover:bg-gray-200"
           >
             Insert
           </button>
